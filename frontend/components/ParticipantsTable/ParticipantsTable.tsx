@@ -1,13 +1,25 @@
-import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/solid";
-import TableButton from "./TableButton";
+"use client";
 
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import TableButton from "./TableButton";
+import AddParticipantModal from "../modals/AddParticipantModal";
+import { useState } from "react";
 export default function ParticipantsTable() {
+  const [showAddParticipantModal, setShowAddParticipantModal] = useState(false);
   return (
     <div className="relative overflow-x-auto md:mx-14 mx-4 sm:mx-8">
       <div className="flex justify-end mb-4">
-        <TableButton color="green" Icon={PlusCircleIcon} text="Agregar" />
-        <TableButton color="red" Icon={TrashIcon} text="Eliminar" />
+        <TableButton
+          color="green"
+          Icon={PlusCircleIcon as any}
+          text="Agregar"
+          onClick={() => setShowAddParticipantModal(true)}
+        />
       </div>
+      <AddParticipantModal
+        showModal={showAddParticipantModal}
+        setShowModal={setShowAddParticipantModal}
+      />
       <table className="w-full text-sm text-left text-gray-500 sm:rounded-lg shadow-md">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -32,7 +44,7 @@ export default function ParticipantsTable() {
             </th>
 
             <th scope="col" className="px-6 py-3">
-              <span className="sr-only">Edit</span>
+              <span className="sr-only">Eliminar</span>
             </th>
           </tr>
         </thead>
@@ -48,7 +60,7 @@ export default function ParticipantsTable() {
 
             <td className="px-6 py-4 text-right">
               <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
+                Eliminar
               </a>
             </td>
           </tr>
@@ -63,7 +75,7 @@ export default function ParticipantsTable() {
 
             <td className="px-6 py-4 text-right">
               <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
+                Eliminar
               </a>
             </td>
           </tr>
@@ -78,7 +90,7 @@ export default function ParticipantsTable() {
 
             <td className="px-6 py-4 text-right">
               <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
+                Eliminar
               </a>
             </td>
           </tr>
