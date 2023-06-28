@@ -6,5 +6,5 @@ export interface ParticipantData {
 
 export interface ParticipantDataContextType {
   participants: ParticipantData[];
-  setParticipants: (participants: ParticipantData[]) => void;
+  setParticipants: React.Dispatch<React.SetStateAction<ParticipantData[]>>;
 }

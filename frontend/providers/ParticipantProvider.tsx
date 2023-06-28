@@ -1,8 +1,6 @@
-import {
-  ParticipantData,
-  ParticipantDataContextType,
-} from "@/types/Participant";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { useLocalStorageParticipants } from "@/hooks/useLocalStorageParticipants";
+import { ParticipantDataContextType } from "@/types/Participant";
+import { ReactNode, createContext, useContext } from "react";
 
 const ParticipantContext = createContext<
   ParticipantDataContextType | undefined
@@ -16,7 +14,7 @@ export function useParticipant() {
 }
 
 export function ParticipantProvider({ children }: { children: ReactNode }) {
-  const [participants, setParticipants] = useState<ParticipantData[]>([]);
+  const [participants, setParticipants] = useLocalStorageParticipants();
 
   const value: ParticipantDataContextType = {
     participants,
