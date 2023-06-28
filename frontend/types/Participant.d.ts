@@ -1,4 +1,5 @@
 export interface ParticipantData {
+  id: string;
   name: string;
   email: string;
 }
