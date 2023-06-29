@@ -7,13 +7,11 @@ import SearchBar from "./SearchBar";
 import TableHeader from "./TableElements/TableHeader";
 import ParticipantRow from "./TableElements/ParticipantRow";
 import { useState } from "react";
-import {
-  ParticipantProvider,
-  useParticipant,
-} from "@/providers/ParticipantProvider";
+import { useParticipant } from "@/providers/ParticipantProvider";
 export default function ParticipantsTable() {
   const [showAddParticipantModal, setShowAddParticipantModal] = useState(false);
   const { participants } = useParticipant();
+
   return (
     <div className="relative overflow-x-auto md:mx-14 mx-4 sm:mx-8">
       <div className="flex justify-between mb-4">
@@ -29,6 +27,7 @@ export default function ParticipantsTable() {
         showModal={showAddParticipantModal}
         setShowModal={setShowAddParticipantModal}
       />
+
       <table className="w-full text-sm text-left text-gray-500 sm:rounded-lg shadow-md">
         <TableHeader columns={["Nombre", "Correo", ""]} />
         <tbody>

@@ -24,16 +24,19 @@ export function useParticipant() {
 
 export function ParticipantProvider({ children }: { children: ReactNode }) {
   const [participants, setParticipants] = useState<ParticipantData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const value: ParticipantDataContextType = {
     participants,
     setParticipants,
+    loading,
   };
   useEffect(() => {
     if (typeof window !== "undefined") {
       const participants = localStorage.getItem("participants");
       setParticipants(participants ? JSON.parse(participants) : []);
     }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
