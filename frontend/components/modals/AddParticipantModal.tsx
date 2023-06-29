@@ -1,4 +1,7 @@
+import { toast } from "react-hot-toast";
 import BaseModal from "./BaseModal";
+import { v4 as uuidv4 } from "uuid";
+import { useParticipant } from "@/providers/ParticipantProvider";
 
 export default function AddParticipantModal({
   showModal,
@@ -7,6 +10,24 @@ export default function AddParticipantModal({
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
 }) {
+  const { setParticipants } = useParticipant();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const newParticipant = {
+      id: uuidv4(),
+      name: e.currentTarget.text.value,
+      email: e.currentTarget.email.value,
+    };
+
+    setParticipants((prevParticipants) => [
+      ...prevParticipants,
+      newParticipant,
+    ]);
+    toast.success("Participante añadido");
+    setShowModal(false);
+  };
   return (
     <BaseModal
       showModal={showModal}
@@ -16,6 +37,7 @@ export default function AddParticipantModal({
       <form
         className="space-y-1 flex flex-col w-3/4 items-center mx-auto gap-2"
         action="#"
+        onSubmit={handleSubmit}
       >
         <div className="w-full">
           <label

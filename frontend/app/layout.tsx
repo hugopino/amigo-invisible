@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Amigo Invisible Online",
-  description: "Organiza sorteos de Amigo Invisible fácil y rápido.",
+  description: "Organiza sorteos del Amigo Invisible fácil y rápido.",
 };
 
 export default function RootLayout({

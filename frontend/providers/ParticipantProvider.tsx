@@ -1,6 +1,15 @@
-import { useLocalStorageParticipants } from "@/hooks/useLocalStorageParticipants";
-import { ParticipantDataContextType } from "@/types/Participant";
-import { ReactNode, createContext, useContext } from "react";
+"use client";
+import {
+  ParticipantData,
+  ParticipantDataContextType,
+} from "@/types/Participant";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const ParticipantContext = createContext<
   ParticipantDataContextType | undefined
@@ -14,12 +23,24 @@ export function useParticipant() {
 }
 
 export function ParticipantProvider({ children }: { children: ReactNode }) {
-  const [participants, setParticipants] = useLocalStorageParticipants();
+  const [participants, setParticipants] = useState<ParticipantData[]>([]);
 
   const value: ParticipantDataContextType = {
     participants,
     setParticipants,
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const participants = localStorage.getItem("participants");
+      setParticipants(participants ? JSON.parse(participants) : []);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("participants", JSON.stringify(participants));
+    }
+  }, [participants]);
   return (
     <ParticipantContext.Provider value={value}>
       {children}

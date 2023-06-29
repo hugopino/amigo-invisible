@@ -1,18 +1,11 @@
-import { ReactElement } from "react";
+import { FunctionalButtonProps } from "@/types/ParticipantsTable";
 
-interface TableButtonProps {
-  color: string;
-  Icon: (props: React.ComponentProps<"svg">) => ReactElement;
-  text: string;
-  onClick: () => void;
-}
-
-export default function TableButton({
+export default function FunctionalButton({
   color,
   Icon,
   text,
   onClick,
-}: TableButtonProps) {
+}: FunctionalButtonProps) {
   let colorClass;
   switch (color) {
     case "red":
