@@ -25,6 +25,10 @@ export default function ImportParticipantModal({
     const newParticipants: ParticipantData[] = [];
 
     for (let line of lines) {
+      line = line.trim();
+      if (line === "") {
+        continue;
+      }
       if (!regex.test(line)) {
         toast.error("Formato incorrecto en " + line);
         return;
