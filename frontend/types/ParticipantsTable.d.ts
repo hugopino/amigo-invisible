@@ -1,6 +1,13 @@
 export interface FunctionalButtonProps {
   color: string;
-  Icon: (props: React.ComponentProps<"svg">) => ReactElement;
+  Icon: ForwardRefExoticComponent<RefAttributes<SVGSVGElement>>;
   text: string;
   onClick?: () => void;
+  modalKey?: string | null;
+}
+interface ModalComponents {
+  [key: string]: FunctionComponent<{
+    showModal: boolean;
+    setShowModal: (showModal: boolean) => void;
+  }>;
 }

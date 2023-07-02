@@ -1,53 +1,69 @@
 import ImportParticipantModal from "../modals/ImportParticipantModal";
+import AddParticipantModal from "../modals/AddParticipantModal";
+import DeleteAllParticipantModal from "../modals/DeleteAllParticipantModal";
 import {
   ArrowUpCircleIcon,
   PlusCircleIcon,
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import TableButton from "./FunctionalButton";
-import { useState } from "react";
-import AddParticipantModal from "../modals/AddParticipantModal";
-import DeleteAllParticipantModal from "../modals/DeleteAllParticipantModal";
+import { useState, FunctionComponent } from "react";
+import {
+  FunctionalButtonProps,
+  ModalComponents,
+} from "@/types/ParticipantsTable";
+
+const MODAL_COMPONENTS: ModalComponents = {
+  add: AddParticipantModal,
+  import: ImportParticipantModal,
+  delete: DeleteAllParticipantModal,
+};
 
 export default function ParticipantManagement() {
-  const [showAddParticipantModal, setShowAddParticipantModal] =
-    useState<boolean>(false);
-  const [showImportParticipantsModal, setShowImportParticipantsModal] =
-    useState<boolean>(false);
-  const [showDeleteAllParticipantsModal, setShowDeleteAllParticipantsModal] =
-    useState<boolean>(false);
+  const [activeModal, setActiveModal] = useState<string | null | undefined>(
+    null
+  );
+
+  const buttons: FunctionalButtonProps[] = [
+    {
+      color: "blue",
+      Icon: ArrowUpCircleIcon,
+      text: "Importar",
+      modalKey: "import",
+    },
+    {
+      color: "green",
+      Icon: PlusCircleIcon,
+      text: "Agregar",
+      modalKey: "add",
+    },
+    {
+      color: "red",
+      Icon: TrashIcon,
+      text: "Borrar todos",
+      modalKey: "delete",
+    },
+  ];
+
+  const ModalComponent = activeModal ? MODAL_COMPONENTS[activeModal] : null;
+
   return (
     <>
-      <TableButton
-        color="blue"
-        Icon={ArrowUpCircleIcon as any}
-        text="Importar"
-        onClick={() => setShowImportParticipantsModal(true)}
-      />
-      <TableButton
-        color="green"
-        Icon={PlusCircleIcon as any}
-        text="Agregar"
-        onClick={() => setShowAddParticipantModal(true)}
-      />
-      <TableButton
-        color="red"
-        Icon={TrashIcon as any}
-        text="Borrar todos"
-        onClick={() => setShowDeleteAllParticipantsModal(true)}
-      />
-      <AddParticipantModal
-        showModal={showAddParticipantModal}
-        setShowModal={setShowAddParticipantModal}
-      />
-      <ImportParticipantModal
-        showModal={showImportParticipantsModal}
-        setShowModal={setShowImportParticipantsModal}
-      />
-      <DeleteAllParticipantModal
-        showModal={showDeleteAllParticipantsModal}
-        setShowModal={setShowDeleteAllParticipantsModal}
-      />
+      {buttons.map(({ color, Icon, text, modalKey }) => (
+        <TableButton
+          key={modalKey}
+          color={color}
+          Icon={Icon as any}
+          text={text}
+          onClick={() => setActiveModal(modalKey)}
+        />
+      ))}
+      {ModalComponent && (
+        <ModalComponent
+          showModal={activeModal !== null}
+          setShowModal={() => setActiveModal(null)}
+        />
+      )}
     </>
   );
 }

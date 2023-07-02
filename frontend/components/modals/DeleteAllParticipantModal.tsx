@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import BaseModal from "./BaseModal";
 import { useParticipant } from "@/providers/ParticipantProvider";
 import SubmitButton from "../SubmitButton";
-import { XCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { XCircleIcon } from "@heroicons/react/24/solid";
 
 export default function DeleteAllParticipantModal({
   showModal,
