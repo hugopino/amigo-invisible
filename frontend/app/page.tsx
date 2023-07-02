@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import { Toaster } from "react-hot-toast";
 import { ParticipantProvider } from "@/providers/ParticipantProvider";
 import { StepperProvider } from "@/providers/StepperProvider";
-import RenderStepperLayout from "@/components/modals/StepperLayout/RenderStepperLayout";
+import RenderStepperLayout from "@/components/StepperLayout/RenderStepperLayout";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import BaseModal from "./BaseModal";
-import SubmitButton from "../SubmitButton";
+import SubmitButton from "../common/SubmitButton";
 import { useParticipant } from "@/providers/ParticipantProvider";
 import { ParticipantData } from "@/types/Participant";
 import { v4 as uuidv4 } from "uuid";

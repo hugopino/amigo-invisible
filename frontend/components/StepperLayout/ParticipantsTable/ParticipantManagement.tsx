@@ -1,6 +1,6 @@
-import ImportParticipantModal from "../../ImportParticipantModal";
-import AddParticipantModal from "../../AddParticipantModal";
-import DeleteAllParticipantModal from "../../DeleteAllParticipantModal";
+import ImportParticipantModal from "../../modals/ImportParticipantModal";
+import AddParticipantModal from "../../modals/AddParticipantModal";
+import DeleteAllParticipantModal from "../../modals/DeleteAllParticipantModal";
 import {
   ArrowUpCircleIcon,
   PlusCircleIcon,

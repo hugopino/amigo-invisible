@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import BaseModal from "./BaseModal";
 import { useParticipant } from "@/providers/ParticipantProvider";
-import SubmitButton from "../SubmitButton";
+import SubmitButton from "../common/SubmitButton";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 
 export default function DeleteAllParticipantModal({

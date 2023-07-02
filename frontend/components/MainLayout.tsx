@@ -1,6 +1,6 @@
 "use client";
 import { useParticipant } from "@/providers/ParticipantProvider";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 export default function MainLayout({
   children,

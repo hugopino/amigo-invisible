@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import BaseModal from "./BaseModal";
 import { v4 as uuidv4 } from "uuid";
 import { useParticipant } from "@/providers/ParticipantProvider";
-import SubmitButton from "../SubmitButton";
+import SubmitButton from "../common/SubmitButton";
 
 export default function AddParticipantModal({
   showModal,
