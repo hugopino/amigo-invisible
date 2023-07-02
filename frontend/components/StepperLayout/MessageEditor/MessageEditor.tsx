@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import CodeVar from "./CodeVar";
+import { useMessage } from "@/providers/MessageProvider";
 
 export default function MessageEditor() {
-  const [message, setMessage] = useState(
-    "Hola {regalador}, \n\nTu amigo invisible es {receptor}. ¡Esperamos que le hagas un regalo muy especial! \n\n Saludos"
-  );
+  const { message, setMessage } = useMessage();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);

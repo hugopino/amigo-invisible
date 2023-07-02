@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { ParticipantProvider } from "@/providers/ParticipantProvider";
 import { StepperProvider } from "@/providers/StepperProvider";
 import RenderStepperLayout from "@/components/StepperLayout/RenderStepperLayout";
+import { MessageProvider } from "@/providers/MessageProvider";
 
 export default function Home() {
   return (
@@ -12,11 +13,13 @@ export default function Home() {
       <RootLayout>
         <ParticipantProvider>
           <StepperProvider>
-            <Toaster />
-            <MainLayout>
-              <HeroSection />
-              <RenderStepperLayout />
-            </MainLayout>
+            <MessageProvider>
+              <Toaster />
+              <MainLayout>
+                <HeroSection />
+                <RenderStepperLayout />
+              </MainLayout>
+            </MessageProvider>
           </StepperProvider>
         </ParticipantProvider>
       </RootLayout>
