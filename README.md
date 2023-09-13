@@ -6,7 +6,7 @@ This application is built with Next.js for the frontend and FastAPI for the back
 
 ## Online Demo
 
-Experience the live demo of the project at [sorteoamigoinvisible.net](http://sorteoamigoinvisible.net/). Please note that in this demo, the backend is disabled and no emails will be sent.
+Experience the live demo of the project at [sorteoamigoinvisible.net](http://sorteoamigoinvisible.net/).
 
 ![demo-1](https://github.com/hugopino/amigo-invisible/assets/102437612/b467fac4-8b71-422a-b7c8-cd4967079b09)
 ![demo-2](https://github.com/hugopino/amigo-invisible/assets/102437612/1a637226-ea58-4ecf-9778-b1e5ec012c8c)
