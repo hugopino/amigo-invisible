@@ -1,26 +1,29 @@
-import random
 from typing import List
 from collections import defaultdict
 from models import Participant
+import random
 
-def generate_invisible_friends(participants: List[Participant], max_attempts=10, attempt=0):
-    friends = [participant for participant in participants]
-    random.shuffle(friends)
+def generate_invisible_friends(participants: List[Participant]) -> List[Participant]:
+    n = len(participants)
+    
+    if n < 2:
+        raise ValueError("Se necesitan al menos dos participantes para el juego de amigos invisibles.")
+    
+    shuffled_participants = participants.copy()
+    random.shuffle(shuffled_participants)
+    
+    for i, participant in enumerate(shuffled_participants):
+        if participant == participants[i]:
+            next_i = (i + 1) % n
+            shuffled_participants[i], shuffled_participants[next_i] = shuffled_participants[next_i], shuffled_participants[i]
+    
+    return shuffled_participants
 
-    for original, shuffled in zip(participants, friends):
-        if original.name == shuffled.name:
-            if attempt < max_attempts:
-                return generate_invisible_friends(participants, max_attempts, attempt+1)
-            else:
-                raise ValueError("No se pudo generar una asignación de amigos invisibles después de varios intentos.")
 
-    return friends
-
+class SafeDict(defaultdict):
+    def __missing__(self, key):
+        return '{' + key + '}'
 
 def safe_format(s: str, **kwargs) -> str:
-        class SafeDict(defaultdict):
-            def __missing__(self, key):
-                return '{' + key + '}'
-
-        substitutions = SafeDict(str, **kwargs)
-        return s.format_map(substitutions)
+    substitutions = SafeDict(str, **kwargs)
+    return s.format_map(substitutions)
