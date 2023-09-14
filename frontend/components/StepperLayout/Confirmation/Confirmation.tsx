@@ -58,28 +58,31 @@ export default function Confirmation() {
         setIsError(true);
       });
   };
-
+  console.log(participants);
   return (
     <div className="md:mx-14 mx-4 sm:mx-8 mt-3">
       <div className="flex flex-col justify-center">
-        <div className="mx-auto">
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : isSuccess ? (
-            <CheckCircleIcon className="h-32 w-32 text-green-500 inline-block ml-2" />
-          ) : isError ? (
-            <ExclamationCircleIcon className="h-32 w-32 text-red-500 inline-block ml-2" />
-          ) : (
-            <EnvelopeIcon className="h-32 w-32 bg-gray-500 text-white rounded-full p-5 inline-block ml-2" />
-          )}
-        </div>
         {!isLoading && !isSuccess && (
-          <button
-            className="mt-4 w-1/2 mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-            onClick={sendEmails}
-          >
-            Confirmar y enviar correos
-          </button>
+          <>
+            <h2 className="text-xl font-semibold text-center mb-2">
+              Participantes
+            </h2>
+            <ul className="list-disc mx-auto w-full max-w-xs overflow-y-auto h-auto max-h-64">
+              {participants.map((participant) => {
+                return (
+                  <li>
+                    {participant.name} ({participant.email})
+                  </li>
+                );
+              })}
+            </ul>
+            <button
+              className="mt-4 w-1/2 mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4"
+              onClick={sendEmails}
+            >
+              Confirmar y enviar correos
+            </button>
+          </>
         )}
         {isError && (
           <p className="mt-4 text-red-500 text-center">
@@ -91,6 +94,17 @@ export default function Confirmation() {
             Los correos han sido enviados con éxito.
           </p>
         )}
+        <div className="mx-auto">
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : isSuccess ? (
+            <CheckCircleIcon className="h-16 w-16 text-green-500 inline-block ml-2" />
+          ) : isError ? (
+            <ExclamationCircleIcon className="h-16 w-16 text-red-500 inline-block ml-2" />
+          ) : (
+            <EnvelopeIcon className="h-16 w-16 bg-gray-500 text-white rounded-full p-5 inline-block ml-2" />
+          )}
+        </div>
       </div>
     </div>
   );
